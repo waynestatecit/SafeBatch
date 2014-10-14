@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file is part of SafeBatch, a Limit avoidance utility for Batch Apex on the Force.com platform.
+
+Copyright 2013-2014, Wayne State University
+License: 3-clause BSD license.  See LICENSE.
+-->
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Saved scope of a SafeBatch-rebatched job.</description>
+    <label>SafeBatch Scope</label>
+    <nameField>
+        <label>SafeBatch Scope ID</label>
+        <type>AutoNumber</type>
+        <displayFormat>SB_S-{0}</displayFormat>
+    </nameField>
+    <fields>
+        <fullName>Data__c</fullName>
+        <externalId>false</externalId>
+        <label>Data</label>
+        <length>32768</length>
+        <required>false</required>
+        <type>LongTextArea</type>
+        <unique>false</unique>
+        <visibleLines>2</visibleLines>
+    </fields>
+    <pluralLabel>SafeBatch Scopes</pluralLabel>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>

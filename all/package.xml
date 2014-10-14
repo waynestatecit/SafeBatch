@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>WSU_SB</members>
+        <members>WSU_SBTest</members>
+        <members>WSU_SB_Batchable</members>
+        <members>WSU_SB_Batchable_SObject</members>
+        <members>WSU_SB_Batchable_SObject_QL</members>
+        <members>WSU_SB_Batchable_SObject_List</members>
+        <members>WSU_SB_Batchable_Object</members>
+        <members>WSU_SB_Batchable_Recovery_SObject_QL</members>
+        <members>WSU_SB_Batchable_Recovery_SObject_List</members>
+        <members>WSU_SB_Batchable_Recovery_Object</members>
+        <members>WSU_SB_Interface_SObject</members>
+        <members>WSU_SB_Interface_Object</members>
+        <members>WSU_SB_Test_SObject_QL</members>
+        <members>WSU_SB_Test_SObject_List</members>
+        <members>WSU_SB_Test_Object_List</members>
+        <name>ApexClass</name>
+    </types>
+    <types>
+        <members>WSU_SB_Scope__c</members>
+        <name>CustomObject</name>
+    </types>
+    <version>27.0</version>
+</Package>
