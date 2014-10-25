@@ -22,5 +22,5 @@
         <members>WSU_SB_Scope__c</members>
         <name>CustomObject</name>
     </types>
-    <version>27.0</version>
+    <version>31.0</version>
 </Package>
