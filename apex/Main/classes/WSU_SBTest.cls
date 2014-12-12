@@ -27,12 +27,20 @@ public class WSU_SBTest {
             );
         }
         results = Database.insert(cons);
+
+        // Work around the enqueueJob() platform bug detailed in WSU_Kyou while deploying to production
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
     }
 
     static testMethod void testEnqueueBatchSObjectQL() {
         ID returned = WSU_SB.enqueueBatch(WSU_SB_Test_SObject_QL.class, null, null, null, false, false);
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
+        Test.startTest();
         WSU_SB.doCommit();
-        System.assertEquals(WSU_Kyou.entries().size(), 1);
+        Test.stopTest();
+        System.assertEquals([select count() from WSU_Kyou_QueueEntry__c], 1);
     }
 
     // Start section for SObject QueryLocator
@@ -86,6 +94,8 @@ public class WSU_SBTest {
         if (WSU_Kyou.slotsAvailable() == 0) {
             throw new WSU_SB.SB_Exception('I need at least one open Batch Apex slot to run this test.');
         }
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
         Test.startTest();
         ID returned = WSU_SB.enqueueBatch(WSU_SB_Test_SObject_QL.class, null,
             new Map<String, Object>{
@@ -229,6 +239,8 @@ public class WSU_SBTest {
         );
         batchable.queryFieldString = 'Id';
         batchable.querySObjectName = 'Contact';
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
         batchable.finish(null);
         List<WSU_Kyou_QueueEntry__c> entriesInDB = [select Id from WSU_Kyou_QueueEntry__c];
         System.assertEquals(entriesInDB.size(), 1);
@@ -258,7 +270,7 @@ public class WSU_SBTest {
 
     static testMethod void testTestSObjectQLExecute() {
         Test.startTest();
-        ID returned = WSU_Kyou.enqueueBatch(WSU_SB_Test_SObject_QL.class, null, null, null, true, false);
+        ID returned = WSU_Kyou.enqueueBatch(WSU_SB_Test_SObject_QL.class, null, null, null, true, false, false, false);
         Test.stopTest();
 
         List<Contact> cons = [select FirstName, LastName, Email from Contact];
@@ -309,6 +321,8 @@ public class WSU_SBTest {
                 'fakerecovery@fake.com'
             }
         );
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
         batchable.finish(null);
         List<WSU_Kyou_QueueEntry__c> entriesInDB = [select Id from WSU_Kyou_QueueEntry__c];
         System.assertEquals(entriesInDB.size(), 1);
@@ -361,6 +375,8 @@ public class WSU_SBTest {
         if (WSU_Kyou.slotsAvailable() == 0) {
             throw new WSU_SB.SB_Exception('I need at least one open Batch Apex slot to run this test.');
         }
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
         Test.startTest();
         ID returned = WSU_SB.enqueueBatch(WSU_SB_Test_Object_List.class, null,
             new Map<String, Object>{
@@ -454,6 +470,8 @@ public class WSU_SBTest {
         if (WSU_Kyou.slotsAvailable() == 0) {
             throw new WSU_SB.SB_Exception('I need at least one open Batch Apex slot to run this test.');
         }
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
         Test.startTest();
         ID returned = WSU_SB.enqueueBatch(WSU_SB_Test_SObject_List.class, null,
             new Map<String, Object>{
@@ -582,6 +600,8 @@ public class WSU_SBTest {
         );
         batchable.queryFieldString = 'Id';
         batchable.querySObjectName = 'Contact';
+        WSU_Kyou.setForceAdder(true); // Only needed in test to deal with blocking of enqueueJob() in
+                                      // WSU_Kyou.doCommit()
         batchable.finish(null);
         List<WSU_Kyou_QueueEntry__c> entriesInDB = [select Id from WSU_Kyou_QueueEntry__c];
         System.assertEquals(entriesInDB.size(), 1);
@@ -611,7 +631,7 @@ public class WSU_SBTest {
 
     static testMethod void testTestSObjectListExecute() {
         Test.startTest();
-        ID returned = WSU_Kyou.enqueueBatch(WSU_SB_Test_SObject_List.class, null, null, null, true, false, true);
+        ID returned = WSU_Kyou.enqueueBatch(WSU_SB_Test_SObject_List.class, null, null, null, true, false, true, false);
         Test.stopTest();
 
         List<Contact> cons = [select FirstName, LastName, Email from Contact];

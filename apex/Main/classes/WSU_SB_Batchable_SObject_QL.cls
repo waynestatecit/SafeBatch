@@ -61,7 +61,7 @@ public virtual class WSU_SB_Batchable_SObject_QL extends WSU_SB_Batchable_SObjec
                     'options' => options
                 }),
                 'implementationArgsData' => JSON.serialize(implementationArgs)
-            }, (ID)null, false);
+            }, (Integer)null, false, false, false, false);
             WSU_Kyou.doCommit();
         }
         implementation.finish(bc);

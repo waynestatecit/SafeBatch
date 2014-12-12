@@ -99,7 +99,7 @@ public virtual class WSU_SB_Batchable_Object extends WSU_SB_Batchable implements
                     'options' => options
                 }),
                 'implementationArgsData' => JSON.serialize(implementationArgs)
-            }, (ID)null, false, false, false, true);
+            }, (Integer)null, false, false, false, true);
             WSU_Kyou.doCommit();
         }
         implementationObject.finish(bc);

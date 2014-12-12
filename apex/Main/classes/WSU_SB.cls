@@ -33,7 +33,7 @@ public class WSU_SB {
                 'options' => options
             }),
             'implementationArgsData' => JSON.serialize(args)
-        }, (ID)null, tryNow, false, startReturnsList, startReturnsObjectList);
+        }, (Integer)null, tryNow, false, startReturnsList, startReturnsObjectList);
 
         if (startReturnsObjectList) {
             if (WSU_Kyou.latestImplementationObject != null) {
